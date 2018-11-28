@@ -1,8 +1,7 @@
 Vue.filter('jsonFilter',{read:function(input){
     // 将字符串转成JSOn:
-    //     alert(input)
-    // var jsonObj = JSON.parse(input);
-    var jsonObj = input;
+        alert(input)
+    var jsonObj = JSON.parse(input);
 
     var value = "";
     for(var i=0;i<jsonObj.length;i++){
@@ -16,7 +15,7 @@ Vue.filter('jsonFilter',{read:function(input){
     return value;
 },write:function(input){ //view -> model
         // 将字符串转成JSOn:
-        var jsonObj = input;
+        var jsonObj = JSON.parse(input);
 
         var value = "";
         for(var i=0;i<jsonObj.length;i++){
@@ -111,16 +110,6 @@ var typetemplateManager = new Vue({
             }).then(function (result) {
                 this.list = result.data.rows;
             });
-            /*this.$http.get({
-                url:"../specification/querySpecificationAllByPage.do?pageNum=1&pageSize=100"
-            }).then(function (result) {
-                this.brandList = result.data.rows;
-            });
-            this.$http.get({
-                url: "../specification/querySpecificationAllByPage.do?pageNum=1&pageSize=100"
-            }).then(function (result) {
-                this.specList = result.data.rows;
-            });*/
         },deleteTableRow:function(index){
             this.entity.customAttributeItems.splice(index,1)
         },

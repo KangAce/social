@@ -73,7 +73,16 @@ var materialManager = new Vue({
                 url: '../category/queryCategoryByParentID.do',
                 data: this.materialEntity.material.category2Id,
             }).then(function (res) {
-
+                this.materialEntity.material.category3Id=res.data
+            });
+        },
+        'materialEntity.material.category3Id':function () {
+            $http({
+                method: 'post',
+                url: '../category/queryCategoryByParentID.do',
+                data: this.materialEntity.material.category2Id,
+            }).then(function (res) {
+                this.materialEntity.material.category3Id=res.data
             });
         }
         
