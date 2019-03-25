@@ -55,4 +55,11 @@ public interface CategoryService {
      */
     int deleteCategoryByID(Integer id) throws Exception;
 
+    /**
+     * 根据分类id查找分类信息
+     * @param id 分类id
+     * @return Category 分类对象
+     * @throws Exception
+     */
+    Category queryCategoryByID(Long id)throws Exception;
 }
