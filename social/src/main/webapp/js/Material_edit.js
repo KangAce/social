@@ -1,4 +1,4 @@
-var materialManager = new Vue({
+var materialEdit = new Vue({
     el: 'body',
     data: {
         entity:{},
@@ -12,15 +12,16 @@ var materialManager = new Vue({
         itemCat2List:[],
         itemCat3List:[],
     },
-    methods: {
-        updated:function(){
-            this.$http.post({
-                url: "../category/queryCategoryByParentID.do?parentID=0"
-            }).then(function (result) {
-                this.itemCat1List = result.data;
-            });
+    created:function(){
+        this.$http.post({
+            url: "../category/queryCategoryByParentID.do?parentID=0"
+        }).then(function (result) {
+            this.itemCat1List = result.data;
+        });
 
-        },
+    },
+    methods: {
+
         save:function(){
             this.materialEntity.goodsDesc.introduction=editor.html();/*将富文本编辑器的内容放入实体中*/
             this.$http.post({
@@ -70,24 +71,25 @@ var materialManager = new Vue({
     },
     watch:{
         'materialEntity.material.category1Id':function () {
-            $http({
-                method: 'post',
-                url: '../category/queryCategoryByParentID.do',
-                data: this.materialEntity.material.category1Id,
-            }).then(function (res) {
-                this.materialEntity.material.category2Id=res.data
+            this.$http.post({
+                url: "../category/queryCategoryByParentID.do?parentID="+this.materialEntity.material.category1Id
+            }).then(function (result) {
+                this.itemCat2List = result.data;
             });
         },
         'materialEntity.material.category2Id':function () {
-            $http({
-                method: 'post',
-                url: '../category/queryCategoryByParentID.do',
-                data: this.materialEntity.material.category2Id,
-            }).then(function (res) {
-
+            this.$http.post({
+                url: "../category/queryCategoryByParentID.do?parentID="+this.materialEntity.material.category2Id
+            }).then(function (result) {
+                this.itemCat3List = result.data;
+            });
+        },
+        'materialEntity.material.category3Id':function () {
+            this.$http.post({
+                url: "../category/queryCategoryByID.do?ID="+this.materialEntity.material.category3Id
+            }).then(function (result) {
+                this.materialEntity.material.typeTemplateId=result.typeId;
             });
         }
-        
-        
     }
 });

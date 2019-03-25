@@ -32,6 +32,21 @@ public class CategoryController {
         }
         return categories;
     }
+    /**
+         * 返回分类
+         * @return
+         */
+        @RequestMapping("queryCategoryByID")
+        public Category queryCategoryByID(Long ID){
+            Category category=null;
+
+            try {
+                category = categoryService.queryCategoryByID(ID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return category;
+        }
 
     @RequestMapping("deleteCategory")
     @Secured("ROLE_ADMIN")

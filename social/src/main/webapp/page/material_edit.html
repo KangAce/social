@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head>
     <!-- 页面meta -->
@@ -69,11 +69,13 @@
 		                              			</td>
 		                              			<td>
 		                           	  				<select class="form-control select-sm"  v-model="materialEntity.material.category2Id" v-options="item.id as item.name for item in itemCat2List">
-
+														<option v-bind:value="Item.id" v-for="Item in itemCat2List" v-bind:disabled="isActive[Item.id-1]?'disabled':null">{{Item.text}}</option>
 													</select>
 		                              			</td>
 		                              			<td>
-		                           	  				<select class="form-control select-sm" v-model="materialEntity.material.category3Id" v-options="item.id as item.name for item in itemCat3List"></select>
+		                           	  				<select class="form-control select-sm" v-model="materialEntity.material.category3Id" v-options="item.id as item.name for item in itemCat3List">
+														<option v-bind:value="Item.id" v-for="Item in itemCat3ListitemCat3List" v-bind:disabled="isActive[Item.id-1]?'disabled':null">{{Item.text}}</option>
+													</select>
 		                              			</td>
 		                              			<td>
 		                           	  				模板ID:{{materialEntity.material.typeTemplateId}}
@@ -315,5 +317,5 @@
        
 </body>
 
-<script src="../js/MaterialManager.js"></script>
+<script src="../js/Material_edit.js"></script>
 </html>

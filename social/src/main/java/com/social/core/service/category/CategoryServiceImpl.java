@@ -76,4 +76,12 @@ public class CategoryServiceImpl implements CategoryService{
         return 0;
     }
 
+    @Override
+    public Category queryCategoryByID(Long id) throws Exception {
+        CategoryQuery categoryQuery = new CategoryQuery();
+        categoryQuery.createCriteria().andIdEqualTo(id);
+        List<Category> categories = categoryDao.selectByExample(categoryQuery);
+        return categories.get(0);
+    }
+
 }

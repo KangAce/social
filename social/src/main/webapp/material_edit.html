@@ -21,7 +21,7 @@
 	<!-- 引入vue的js -->
 	<script src="../assets/vendor/vue/vue.js"></script>
 	<script src="../assets/vendor/vue/vue-resource.js"></script>
-    
+
 </head>
 
 <body class="hold-transition skin-red sidebar-mini" >
@@ -68,13 +68,14 @@
 													</select>
 		                              			</td>
 		                              			<td>
-		                           	  				<select class="form-control select-sm"  v-model="materialEntity.material.category2Id" v-options="item.id as item.name for item in itemCat2List">
-
+													<select class="form-control" v-model="materialEntity.material.category2Id" >
+														<option v-for="value in itemCat2List" :value ="value.id">{{value.name}}</option>
 													</select>
 		                              			</td>
 		                              			<td>
-		                           	  				<select class="form-control select-sm" v-model="materialEntity.material.category3Id" v-options="item.id as item.name for item in itemCat3List"></select>
-		                              			</td>
+													<select class="form-control" v-model="materialEntity.material.category3Id" >
+														<option v-for="value in itemCat3List" :value ="value.id">{{value.name}}</option>
+													</select></td>
 		                              			<td>
 		                           	  				模板ID:{{materialEntity.material.typeTemplateId}}
 		                              			</td>
@@ -91,8 +92,9 @@
 		                           
 		                           <div class="col-md-2 title">品牌</div>
 		                           <div class="col-md-10 data">
-		                              <select class="form-control" v-model="materialEntity.material.brandId" v-options="item.id as item.text for item in typeTemplate.brandIds" ></select>
-		                           </div>
+									   <select class="form-control" v-model="materialEntity.material.brandId" >
+										   <option v-for="value in brandList" :value ="value.id">{{value.name}}</option>
+									   </select></div>
 		
 								   <div class="col-md-2 title">副标题</div>
 		                           <div class="col-md-10 data">
@@ -300,7 +302,7 @@
 	</div>
 </div>
 
-            
+
             <!-- 正文区域 /-->
 <script type="text/javascript">
 
@@ -315,5 +317,7 @@
        
 </body>
 
-<script src="../js/MaterialManager.js"></script>
+<script src="./js/Material_edit.js">
+	materialEdit.load();
+</script>
 </html>
